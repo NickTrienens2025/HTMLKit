@@ -10,7 +10,7 @@ let package = Package(
     products: [
         .library(
             name: "HTMLKit",
-            targets: ["HTMLKit", "HTMLKitComponents", "HTMLKitVapor"]
+            targets: ["HTMLKit", "HTMLKitComponents"]
         ),
         .plugin(
             name: "ComponentsPlugin",
@@ -25,7 +25,6 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.1"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.6.1"),
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.65.2")
     ],
     targets: [
         .target(
@@ -49,13 +48,6 @@ let package = Package(
             ],
             resources: [
                 .process("Resources")
-            ]
-        ),
-        .target(
-            name: "HTMLKitVapor",
-            dependencies: [
-                .target(name: "HTMLKit"),
-                .product(name: "Vapor", package: "vapor"),
             ]
         ),
         .target(
@@ -90,17 +82,7 @@ let package = Package(
                 .copy("Localization")
             ]
         ),
-        .testTarget(
-            name: "HTMLKitVaporTests",
-            dependencies: [
-                .target(name: "HTMLKitVapor"),
-                .target(name: "HTMLKit"),
-                .product(name: "XCTVapor", package: "vapor")
-            ],
-            resources: [
-                .copy("Localization")
-            ]
-        ),
+        
         .testTarget(
             name: "UtilitiesTests",
             dependencies: [
